@@ -1,3 +1,4 @@
 # SpotifyPlaylist
-##React Spotify Project
-![Screenshot](Capture.png)
+#React Spotify Project
+!](public/capture.png)
+
