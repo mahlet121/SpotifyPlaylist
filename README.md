@@ -1,4 +1,5 @@
 # SpotifyPlaylist
 #React Spotify Project
-![](/public/Capture.png)
+![spotify](public/Capture.png)
+![liri](images/image1.png)
 
