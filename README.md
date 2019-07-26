@@ -1,6 +1,6 @@
 # SpotifyPlaylist
 #React Spotify Project
-React web application to search ,create and delete playlist using Spotify API's
+React web application to search ,update and delete playlist using Spotify API's
 
 If you wish to run the code locally please do the following,
 
