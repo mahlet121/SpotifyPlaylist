@@ -3,7 +3,7 @@ let spotifyAccesToken = '';
 // Please provide the client ID of your Spotify App.
 const clientId = 'f0f97d85bbe84b36a8f48fabefef4997';
 //Please provide the redirect URI added in your Spotify App while registration.
-const redirectUri = 'http://localhost:3000';
+const redirectUri = 'https://evening-island-72042.herokuapp.com/';
 
 const Spotify = {
   // Get the access token using authorize API from Sportify.
@@ -181,21 +181,18 @@ async OldList(token)
     
    const response = await fetch('https://api.spotify.com/v1/me/playlists', {
       headers
+    }).then(response => response.json())
+    .then(data => this.setState({
+      playlists: data.items.map(item => {
+        console.log(data.items)
+        return {
+          name: item.name,
+          track:item.owner.display_name,
+          imageUrl: item.images[0].url, 
+          songs: []
+        }
     })
-
-   const jsonResponse = await response.json();
-   console.log(jsonResponse);
-    // .then(data => this.setState({
-    //   playlists: data.items.map(item => {
-    //     console.log(data.items)
-    //     return {
-    //       name: item.name,
-    //       track:item.owner.display_name,
-    //       imageUrl: item.images[0].url, 
-    //       songs: []
-    //     }
-    // })
-    // }))
+    }))
     }
   }
     
