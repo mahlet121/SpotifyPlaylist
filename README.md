@@ -14,7 +14,6 @@ visit http://localhost:3000
 
 #first you will see your current playlists
 ![Capture6](https://user-images.githubusercontent.com/26695426/62009195-250b1b00-b122-11e9-886d-b877b3db0167.PNG)
-![Capture](https://user-images.githubusercontent.com/26695426/61961085-72558400-af8c-11e9-9532-d549e8333e83.PNG)
 #First create playlist like the following picture
 ![Capture2](https://user-images.githubusercontent.com/26695426/61961434-150e0280-af8d-11e9-937b-d888499612a0.PNG)
 #search for song ,album or artist name 
