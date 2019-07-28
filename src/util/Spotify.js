@@ -2,6 +2,8 @@
 let spotifyAccesToken = '';
 // Please provide the client ID of your Spotify App.
 const clientId = 'f0f97d85bbe84b36a8f48fabefef4997';
+const se = '4c5b579de68e4d518d53101c736360bc';
+
 //Please provide the redirect URI added in your Spotify App while registration.
 const redirectUri = 'http://localhost:3000';
 
