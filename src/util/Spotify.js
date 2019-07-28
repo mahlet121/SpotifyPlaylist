@@ -1,9 +1,9 @@
 
 let spotifyAccesToken = '';
 // Please provide the client ID of your Spotify App.
-const clientId = '';
+const clientId = 'f0f97d85bbe84b36a8f48fabefef4997';
 //Please provide the redirect URI added in your Spotify App while registration.
-const redirectUri = '';
+const redirectUri = 'http://localhost:3000';
 
 const Spotify = {
   // Get the access token using authorize API from Sportify.
@@ -29,9 +29,8 @@ const Spotify = {
     }
   },
 
-
-
-
+   
+ 
 
   // Search for a track from Spotify
   async search(term)
@@ -49,6 +48,7 @@ const Spotify = {
       if(jsonResponse.tracks && jsonResponse.tracks.items)
       {
         let searchResults = jsonResponse.tracks.items.map((track, index)=>{
+          
           return {  id: track.id,
                     name: track.name,
                     artist: track.artists[0].name,
@@ -114,11 +114,15 @@ const Spotify = {
                         }
                       );
     const jsonResponse = await response.json();
+    
     if(jsonResponse)
     {
+ 
       userId = jsonResponse.id;
+
     }
     return userId;
+    
   },
 
 // Create a play list with given name and return it's ID
@@ -162,10 +166,41 @@ const Spotify = {
     const jsonResponse = await response.json();
     if(jsonResponse && jsonResponse.snapshot_id)
     {
-      console.log("tracks added successfully");
+    
       return true;
     }
     return false;
+  },
+
+
+async OldList(token)
+  {
+    const headers = {
+      Authorization: `Bearer ${token}`
+    };
+    
+   const response = await fetch('https://api.spotify.com/v1/me/playlists', {
+      headers
+    })
+
+   const jsonResponse = await response.json();
+   console.log(jsonResponse);
+    // .then(data => this.setState({
+    //   playlists: data.items.map(item => {
+    //     console.log(data.items)
+    //     return {
+    //       name: item.name,
+    //       track:item.owner.display_name,
+    //       imageUrl: item.images[0].url, 
+    //       songs: []
+    //     }
+    // })
+    // }))
+    }
   }
-};
+    
+  
+
+
+
 export default Spotify;

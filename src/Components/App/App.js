@@ -8,12 +8,30 @@ import Playlist from '../Playlist/Playlist';
 //import utils
 import Spotify from '../../util/Spotify';
 import OldPlaylist from '../OldPlaylist/OldPlaylist';
+import SpotifyWebApi from 'spotify-web-api-js';
+// let fakeServerData = {
+//   user: {
+//     name: 'David',
+//     playlists: [
+//       {
+//         name: 'My favorites',
+//         songs: [
+//           {name: 'Beat It', duration: 1345}, 
+//           {name: 'Cannelloni Makaroni', duration: 1236},
+//           {name: 'Rosa helikopter', duration: 70000}
+//         ]
+//       }
+//     ]
+//   }
+// };
 
 
 class App extends Component {
   constructor(props)
   {
     super(props);
+    const params = this.getHashParams();
+    console.log(params);
     /*
     // Test data
     this.state =  {
@@ -26,6 +44,7 @@ class App extends Component {
                   };*/
     this.state =  {
                     searchResults:[],
+                   plays:[],
                     playList:{ name:'New Playlist',
                                tracks:[]
                              }
@@ -35,7 +54,38 @@ class App extends Component {
     this.updatePlaylistName = this.updatePlaylistName.bind(this);
     this.savePlaylist = this.savePlaylist.bind(this);
     this.search = this.search.bind(this);
+    
+   
   }
+getHashParams() {
+    var hashParams = {};
+    var e, r = /([^&;=]+)=?([^&;]*)/g,
+        q = window.location.hash.substring(1);
+    e = r.exec(q)
+    while (e) {
+       hashParams[e[1]] = decodeURIComponent(e[2]);
+       e = r.exec(q);
+    }
+    return hashParams;
+  }
+   componentDidMount(){
+    let accessToken=Spotify.getAccessToken();
+   fetch('https://api.spotify.com/v1/me/playlists', {
+      headers: {'Authorization': 'Bearer ' + accessToken}
+    }).then(response => response.json())
+    .then(data => this.setState({
+      plays: data.items.map(item => {
+        console.log(data.item)
+        return {
+          name: item.name,
+          track:item.owner.display_name,
+          imageUrl: item.images[0].url, 
+          songs: []
+        }
+    })
+    }))
+
+   }
 
   // adds a track to playlist
   addTrack(track)
@@ -90,16 +140,30 @@ class App extends Component {
     let searchResults = await Spotify.search(searchTerm);
     this.setState({searchResults:searchResults});
   }
-  
+
 
   render() {
     return (
       <div>
         <h1>Create And Manage your Spotify Playlist</h1>
+
+      <OldPlaylist />
         <div className="App">
-         <OldPlaylist  />
+        
+        
           <SearchBar onSearch= {this.search}/>
           <div className="App-playlist">
+          <div className="CurrentPlaylists">
+
+          <h2>Current Playlist</h2>
+          <h1></h1>
+              <ul>
+        {this.state.plays.map(playlist => (
+          <li><h3>{playlist.name}</h3></li>
+        ))}
+      </ul>
+      </div>
+
             <SearchResults tracks = {this.state.searchResults}
                            onAdd = {this.addTrack}/>
             <Playlist tracks= {this.state.playList.tracks}

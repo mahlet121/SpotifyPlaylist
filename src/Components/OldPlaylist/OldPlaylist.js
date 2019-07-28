@@ -17,11 +17,13 @@ class OldPlaylist extends React.Component
     this.props.onNameChange(name);
   }
 
-  render()
-  {
-    return(
+  render() {
+    let playlist = this.props.playlist
+    return (
       <div>
-        <p>{this.props.Playlists}</p>
+        
+        
+     
       </div>
     );
   }
