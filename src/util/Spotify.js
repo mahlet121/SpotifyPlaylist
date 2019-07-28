@@ -3,7 +3,7 @@ let spotifyAccesToken = '';
 // Please provide the client ID of your Spotify App.
 const clientId = 'f0f97d85bbe84b36a8f48fabefef4997';
 //Please provide the redirect URI added in your Spotify App while registration.
-const redirectUri = 'https://evening-island-72042.herokuapp.com/';
+const redirectUri = 'http://localhost:3000';
 
 const Spotify = {
   // Get the access token using authorize API from Sportify.
