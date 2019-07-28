@@ -7,7 +7,6 @@ import SearchResults from '../SearchResults/SearchResults';
 import Playlist from '../Playlist/Playlist';
 //import utils
 import Spotify from '../../util/Spotify';
-import OldPlaylist from '../OldPlaylist/OldPlaylist';
 import SpotifyWebApi from 'spotify-web-api-js';
 // let fakeServerData = {
 //   user: {
@@ -146,23 +145,19 @@ getHashParams() {
     return (
       <div>
         <h1>Create And Manage your Spotify Playlist</h1>
-
-      <OldPlaylist />
         <div className="App">
-        
-        
           <SearchBar onSearch= {this.search}/>
           <div className="App-playlist">
           <div className="CurrentPlaylists">
 
           <h2>Current Playlist</h2>
           <h1></h1>
-              <ul>
+        <ul>
         {this.state.plays.map(playlist => (
           <li><h3>{playlist.name}</h3></li>
         ))}
-      </ul>
-      </div>
+        </ul>
+        </div>
 
             <SearchResults tracks = {this.state.searchResults}
                            onAdd = {this.addTrack}/>

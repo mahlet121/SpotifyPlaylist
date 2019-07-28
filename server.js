@@ -1,6 +1,11 @@
 let express = require('express')
 let request = require('request')
 let querystring = require('querystring')
+const SPOTIFY_CLIENT_ID= 'f0f97d85bbe84b36a8f48fabefef4997';
+const SPOTIFY_CLIENT_SECRET = '4c5b579de68e4d518d53101c736360bc';
+
+//Please provide the redirect URI added in your Spotify App while registration.
+const redirect_uri = 'http://localhost:3000';
 
 let app = express()
 
